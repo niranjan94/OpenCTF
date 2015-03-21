@@ -1,0 +1,84 @@
+RewriteEngine On
+
+## UNCOMMENT THESE TWO LINES TO FORCE https
+
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Rewrite API Requests
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api /api/router.php [L]
+
+#Rewrite Admin Panel Requests
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^panel /app/panel/router.php [L]
+
+#Rewrite Other Requests
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /app/public/router.php [L]
+
+## OPTIMIZATIONS
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+# webfont mime types
+AddType text/x-component .htc
+AddType application/octet-stream .woff
+
+AddType application/vnd.ms-fontobject  eot
+AddType font/truetype                  ttf
+AddType font/opentype                  otf
+AddType application/x-font-woff		   woff
+
+<filesMatch "\.(html|htm|txt)$">
+   FileETag None
+   <ifModule mod_headers.c>
+      Header unset ETag
+      Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+      Header set Pragma "no-cache"
+      Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+   </ifModule>
+ </filesMatch>
+
+# webfonts and svg:
+<IfModule mod_deflate.c>
+  <FilesMatch "\.(ttf|otf|eot|svg)$" >
+    SetOutputFilter DEFLATE
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault                          "access plus 1 month"
+  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+  ExpiresByType text/html                 "access plus 0 seconds"
+  ExpiresByType text/xml                  "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType application/json          "access plus 0 seconds"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+  ExpiresByType image/x-icon              "access plus 1 week"
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType image/jpg                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType video/ogg                 "access plus 1 month"
+  ExpiresByType audio/ogg                 "access plus 1 month"
+  ExpiresByType video/mp4                 "access plus 1 month"
+  ExpiresByType video/webm                "access plus 1 month"
+  ExpiresByType text/x-component          "access plus 1 month"
+  ExpiresByType font/truetype             "access plus 1 month"
+  ExpiresByType font/opentype             "access plus 1 month"
+  ExpiresByType application/x-font-woff   "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+</IfModule>

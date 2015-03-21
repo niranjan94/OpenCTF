@@ -7,5 +7,12 @@
             "email": "niranjan94@yahoo.com"
         }
     ],
-    "require": {}
+    "require": {
+        "klein/klein": "~2.1",
+        "nesbot/Carbon": "*",
+        "yzalis/identicon": "*",
+        "phpmailer/phpmailer": "5.2.9",
+        "endroid/qrcode": "~1.5",
+        "wixel/gump": "dev-master"
+    }
 }
