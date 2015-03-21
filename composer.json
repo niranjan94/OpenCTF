@@ -1,0 +1,11 @@
+{
+    "name": "niranjan94/open-ctf",
+    "description": "An Open Sourced CTF hosting platform written in php",
+    "authors": [
+        {
+            "name": "Niranjan Rajendran",
+            "email": "niranjan94@yahoo.com"
+        }
+    ],
+    "require": {}
+}
