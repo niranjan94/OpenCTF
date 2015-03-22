@@ -10,3 +10,5 @@ require_once($root."/utils/security.class.php");
 require_once($root."/utils/Session.php");
 require_once($root."/libs/Inflector.php");
 require_once($root."/utils/commons.php");
+// API
+require_once($root."/api/api.php");

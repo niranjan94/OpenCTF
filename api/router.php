@@ -1,10 +1,7 @@
 <?php
 // COMPOSER AUTOLOAD
 require_once($_SERVER['DOCUMENT_ROOT']."/includes.php");
-
 require_once("commons.php");
-// API
-require_once("api.php");
 
 header('Content-Type: application/json');
 

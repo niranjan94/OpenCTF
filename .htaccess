@@ -2,8 +2,8 @@ RewriteEngine On
 
 ## UNCOMMENT THESE TWO LINES TO FORCE https
 
-#RewriteCond %{HTTPS} !=on
-#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 #Rewrite API Requests
 RewriteBase /
@@ -18,7 +18,7 @@ RewriteRule ^panel /app/panel/router.php [L]
 #Rewrite Other Requests
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ /app/public/router.php [L]
+RewriteRule ^ /app/arena/router.php [L]
 
 ## OPTIMIZATIONS
 

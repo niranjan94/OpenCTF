@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><?=$this->pageTitle?></title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/min/g=arena-css">
+    <script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit'></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <div class="computer tablet only row">
+        <div class="ui fixed menu large navbar page grid">
+            <a href="/" class="brand item" style="font-weight: bold">OpenCTF</a>
+            <a href="/" class="<?=($this->current=="home"?"active":"")?> item navitem">Home</a>
+            <a href="/challenges/" class="<?=($this->current=="challenges"||$this->current=="challenges-detail"?"active":"")?> item navitem">Challenges</a>
+            <a href="/scoreboard/" class="<?=($this->current=="scoreboard"?"active":"")?> item navitem">Scoreboard</a>
+            <a href="/sponsors/" class="<?=($this->current=="sponsors"?"active":"")?> item navitem">Sponsors</a>
+            <a class="ui dropdown item">Help
+                <i class="dropdown icon"></i>
+                <div class="menu ui transition hidden">
+                    <div class="<?=($this->current=="resources"?"active":"")?> item navitem" onclick="openLink('/resources/')">Resources</div>
+                    <div class="<?=($this->current=="contact-us"?"active":"")?> item navitem" onclick="openLink('/contact-us/')">Contact Us</div>
+                    <div class="<?=($this->current=="irc"?"active":"")?> item navitem" onclick="openLink('/irc/')">IRC</div>
+                </div>
+            </a>
+            <div class="right menu">
+                <a class="ui dropdown item">Niranjan Rajendran
+                    <i class="dropdown icon"></i>
+                    <div class="menu ui transition hidden">
+                        <div class="<?=($this->current=="user"?"active":"")?> item navitem" onclick="openLink('/user/')">Profile</div>
+                        <div class="<?=($this->current=="team"?"active":"")?> item navitem" onclick="openLink('/team/')">Team</div>
+                        <div class="ui divider"></div>
+                        <div class="<?=($this->current=="logout"?"active":"")?> item navitem" onclick="openLink('/logout/')">Logout</div>
+                    </div>
+                </a>
+                <a href="/login/" class="item navitem">Login</a>
+                <a href="/register/" class="item navitem">Register</a>
+            </div>
+        </div>
+    </div>
+    <div class="mobile only row">
+
+    </div>
+
+
+
+                <div id="pjax-container">
+                    <div class="ui page grid" style="padding-top: 70px;">
+                        <div class="ui page grid">
+                            <div class="ui page grid">
+                                <?php $this->yieldView(); ?>
+                                <code id="old-javascript-holder">
+                                    <!--<?=mini(file_get_contents(dirname(__FILE__)."/js/".$this->viewName.".js"))?>-->
+                                </code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+<script type="text/javascript" src="/assets/min/g=arena-js"></script>
+<script type="text/javascript">
+    $(window).unload(function () { $(window).unbind('unload'); });
+    $(window).bind('pageshow', function(event) {
+        if (event.originalEvent.persisted) {
+            window.location.reload()
+        }
+    });
+    if (history.pushState) {
+        /*$.pjax({url: '<?=$this->path?>', container: '#pjax-container'});*/
+        /*DIRTY HACK TO GET JAVASCRIPT TO WORK*/
+        try {
+            $.globalEval($("#old-javascript-holder").html().replace("<!--", "").replace("-->", ""));
+        } catch (err){
+            console.log(err);
+        }
+    } else {
+        <?=mini(file_get_contents(dirname(__FILE__)."/js/".$this->viewName.".js"))?>
+    }
+    $(document).ready(function(){
+        $('.right.menu.open').on("click",function(e){
+            e.preventDefault();
+            $('.ui.vertical.menu').toggle();
+        });
+
+        $('.ui.dropdown').dropdown();
+
+        $(".navitem").click(function(){
+            $(".navitem").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+    function openLink(link){
+        $.pjax({url: link, container: '#pjax-container'});
+        $(".navitem").removeClass("active");
+        $(this).addClass("active");
+    }
+</script>
+</body>
+</html>
