@@ -38,8 +38,8 @@
                         <div class="<?=($this->current=="logout"?"active":"")?> item navitem" onclick="openLink('/logout/')">Logout</div>
                     </div>
                 </a>
-                <a href="/login/" class="item navitem">Login</a>
-                <a href="/register/" class="item navitem">Register</a>
+                <a href="/login/" class="<?=($this->current=="login"?"active":"")?> item navitem">Login</a>
+                <a href="/register/" class="<?=($this->current=="register"?"active":"")?> item navitem">Register</a>
             </div>
         </div>
     </div>

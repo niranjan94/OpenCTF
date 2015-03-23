@@ -35,14 +35,20 @@ $klein->respond("/login/?",function($request, $response, $service) {
     $service->render('views/'.$data['viewName'].'.phtml', $data);
 });
 
-$klein->respond("/register/?",function($request, $response, $service) {
+$klein->respond("/register/[team-pick:team]?/?",function($request, $response, $service) {
     $response->header("X-PJAX-URL",$request->pathname());
     disableCache($response);
+    if($request->team=="team-pick"){
+        $teamPick = true;
+    } else {
+        $teamPick = false;
+    }
     $data = array(
         'pageTitle' => 'OpenCTF Test Page',
         'viewName' => "register",
         "path" => $request->pathname(),
-        "current" => "register"
+        "current" => "register",
+        "teamPick" => $teamPick
     );
     if($request->headers()['X-PJAX'])
         $service->layout('views/pjax-wrapper.phtml');
