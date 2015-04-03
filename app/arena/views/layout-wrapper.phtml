@@ -49,20 +49,23 @@
 
 
 
-                <div id="pjax-container">
-                    <div class="ui page grid" style="padding-top: 70px;">
-                        <div class="ui page grid">
-                            <div class="ui page grid">
-                                <?php $this->yieldView(); ?>
-                                <code id="old-javascript-holder">
-                                    <!--<?=mini(file_get_contents(dirname(__FILE__)."/js/".$this->viewName.".js"))?>-->
-                                </code>
-                            </div>
-                        </div>
-                    </div>
+    <div id="pjax-container">
+        <div class="ui page grid" style="padding-top: 70px;">
+            <div class="ui page grid">
+                <div class="ui page grid">
+                    <?php $this->yieldView(); ?>
+                    <code id="old-javascript-holder">
+                        <!--<?=mini(file_get_contents(dirname(__FILE__)."/js/".$this->viewName.".js"))?>-->
+                    </code>
                 </div>
-
-
+            </div>
+        </div>
+    </div>
+    <div class="ui page grid" style="padding-top: 20px; padding-bottom: 20px;margin-top: 30px;">
+        <h5 class="ui horizontal header divider" style="font-weight: 300; color:#777777">
+            &copy; All Rights Reserved | testCTF 2015 | Powered with &hearts; by <a href="https://github.com/niranjan94/OpenCTF">OpenCTF</a>
+        </h5>
+    </div>
 
 
 <script type="text/javascript" src="/assets/min/g=arena-js"></script>
@@ -75,7 +78,7 @@
     });
     if (history.pushState) {
         /*$.pjax({url: '<?=$this->path?>', container: '#pjax-container'});*/
-        /*DIRTY HACK TO GET JAVASCRIPT TO WORK*/
+        /*DIRTY HACK TO GET JAVASCRIPT TO WORK IN CERTAIN CASES WHERE IT DOESN't*/
         try {
             $.globalEval($("#old-javascript-holder").html().replace("<!--", "").replace("-->", ""));
         } catch (err){
