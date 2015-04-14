@@ -30,9 +30,10 @@ function verifyAuth($response) {
 
 $klein = new \Klein\Klein();
 
-$requestType = array("POST");
 
-$klein->respond('POST', '/', function () {
+$requestType = array("POST","GET");
+
+$klein->respond($requestType, '/', function () {
     sleep(1);
     $result = array(
         "status" => "ok",

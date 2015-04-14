@@ -11,8 +11,14 @@
     <style type="text/css">
 
     </style>
+    <!--[if !IE 7]>
+    <style type="text/css">
+        #wrap {display:table;height:100%}
+    </style>
+    <![endif]-->
 </head>
 <body>
+<div id="wrap">
     <div class="computer tablet only row">
         <div class="ui fixed menu large navbar page grid">
             <a href="/" class="brand item" style="font-weight: bold">OpenCTF</a>
@@ -61,12 +67,14 @@
             </div>
         </div>
     </div>
-    <div class="ui page grid" style="padding-top: 20px; padding-bottom: 20px;margin-top: 30px;">
+    <div style="height: 60px;">&nbsp;</div>
+</div>
+
+    <div class="ui page grid sticky-footer" id="footer">
         <h5 class="ui horizontal header divider" style="font-weight: 300; color:#777777">
             &copy; All Rights Reserved | testCTF 2015 | Powered with &hearts; by <a href="https://github.com/niranjan94/OpenCTF">OpenCTF</a>
         </h5>
     </div>
-
 
 <script type="text/javascript" src="/assets/min/g=arena-js"></script>
 <script type="text/javascript">

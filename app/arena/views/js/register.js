@@ -10,8 +10,8 @@ function openTos(e){
 $.fn.form.settings.rules.username = function(value) {
     return true;
 };
-
-$('.ui.form.step-1')
+var $formStep1 = $('.ui.form.step-1');
+$formStep1
     .form({
         gender: {
             identifier  : 'gender',
@@ -93,8 +93,32 @@ $('.ui.form.step-1')
                 }
             ]
         }
-    }, {
+    },{
         inline : true,
-        on     : 'change'
+        on     : 'change',
+        onSuccess: function(e){
+            killDefault(e);
+            $formStep1.addClass("loading");
+            var params = {step: 'one'};
+            $.ajax({
+                type: "POST",
+                url: api.arena.register,
+                data: mergeParams($formStep1,params),
+                success: function(result) {
+                    if(result.status=="ok"){
+                        $(".ui.three.steps > .step:nth-child(1)").setCompleted();
+                        $(".ui.three.steps > .step:nth-child(2)").setActive();
+                        $(".verify-email-alert").show();
+                        $formStep1.hide();
+                    } else {
+                        $formStep1.removeClass("loading");
+                    }
+                },
+                error: function(jqXHR,textStatus,errorThrown){
+                    logAjaxError(jqXHR,textStatus,errorThrown);
+                    $formStep1.removeClass("loading");
+                }
+            });
+        }
     })
 ;

@@ -2,7 +2,8 @@
 return array(
     'arena-css' => array(
         '//assets/css/semantic.min.css',
-        '//assets/css/pace.css'
+        '//assets/css/pace.css',
+        '//assets/css/custom/commons.css'
     ),
 
     'arena-js' => array(
@@ -12,6 +13,8 @@ return array(
         '//assets/js/pace.min.js',
         '//assets/js/jquery.nicescroll.min.js',
         '//assets/js/jquery.cookie.js',
+        '//assets/js/api.js',
+        '//assets/js/commons.js',
         '//assets/js/custom/arena/main.js'
     ),
 );
