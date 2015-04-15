@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="column">
+        <div class="ui two column centered grid">
+            <div class="column ui">
+                <form class="ui form segment center aligned login" method="post">
+                    <h2 style="font-weight: 100;">Login</h2>
+                    <div class="ui error hidden password-error-message">
+                        <div class="content">
+                            <div class="header">Credentials incorrect</div>
+                            <p><a class="forgot-password" style="cursor: pointer;text-decoration: underline; color: inherit; font-weight: 100">Click here</a> if you have forgotten your password.</p>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <input type="text" name="username" placeholder="Username">
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <input type="password" name="password" placeholder="Password">
+                            <i class="lock icon"></i>
+                        </div>
+                    </div>
+                    <div class="ui blue labeled icon submit button" style="width: 216px;">Login to OpenCTF <i class="unlock icon"></i> </div>&nbsp;
+                    <div class="ui horizontal divider">
+                        Or
+                    </div>
+                    <a href="/register/" class="ui teal labeled icon button">
+                            Register as a new user
+                        <i class="add icon"></i>
+                    </a>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui small modal forgot-password-modal">
+    <i class="close icon"></i>
+    <div class="header">
+        Forgot your password ?
+    </div>
+    <div class="content">
+        <p>
+            Don't worry. It's quite easy to recovery your account. We just need to verify whether it's really you.
+            <br><br>So, just enter the email ID you used when you registered.
+        </p>
+        <div class="ui left icon fluid large input">
+            <input type="text" placeholder="Your email ID">
+            <i class="user icon"></i>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui black button">
+            Cancel
+        </div>
+        <div class="ui positive right labeled icon button forgot-password-positive">
+            Proceed to Verification
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
+</div>
