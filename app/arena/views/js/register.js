@@ -109,6 +109,7 @@ $formStep1
                         $(".ui.three.steps > .step:nth-child(1)").setCompleted();
                         $(".ui.three.steps > .step:nth-child(2)").setActive();
                         $(".verify-email-alert").show();
+                        replaceURL("/register/verify-email/","Confirm your email");
                         $formStep1.hide();
                     } else {
                         $formStep1.removeClass("loading");

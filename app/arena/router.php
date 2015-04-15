@@ -35,10 +35,10 @@ $klein->respond("/login/?",function($request, $response, $service) {
     $service->render('views/'.$data['viewName'].'.phtml', $data);
 });
 
-$klein->respond("/register/[team-pick:team]?/?",function($request, $response, $service) {
+$klein->respond("/register/[verify-email|team-pick:extra]?/?",function($request, $response, $service) {
     $response->header("X-PJAX-URL",$request->pathname());
     disableCache($response);
-    if($request->team=="team-pick"){
+    if($request->extra=="team-pick"){
         $teamPick = true;
     } else {
         $teamPick = false;
@@ -48,7 +48,8 @@ $klein->respond("/register/[team-pick:team]?/?",function($request, $response, $s
         'viewName' => "register",
         "path" => $request->pathname(),
         "current" => "register",
-        "teamPick" => $teamPick
+        "teamPick" => $teamPick,
+        "extra" => $request->extra
     );
     if($request->headers()['X-PJAX'])
         $service->layout('views/pjax-wrapper.phtml');
@@ -220,7 +221,7 @@ $klein->respond("/tests/?",function($request, $response, $service) {
 
 ob_start();
 $klein->dispatch();
-echo mini(ob_get_clean());
+echo minis(ob_get_clean());
 
 function disableCache($response){
     $response->header("Cache-Control","no-store, no-cache, must-revalidate, max-age=0");

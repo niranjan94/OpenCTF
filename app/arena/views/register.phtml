@@ -5,7 +5,7 @@ $teamPick = $this->teamPick;
 <div class="row">
     <div class="column">
         <div class="ui three steps">
-            <div class="<?= ($teamPick) ? "completed" : "active" ?> step">
+            <div class="<?=($teamPick||$this->extra=="verify-email")?"completed":"active"?> step">
                 <i class="user icon"></i>
 
                 <div class="content">
@@ -13,7 +13,7 @@ $teamPick = $this->teamPick;
                     <div class="description">Create an account for yourself</div>
                 </div>
             </div>
-            <div class="<?= ($teamPick) ? "completed" : "disabled" ?> step">
+            s<div class="<?=($teamPick)?"completed":($this->extra=="verify-email"?"active":"disabled")?> step">
                 <i class="at icon"></i>
 
                 <div class="content">
@@ -31,7 +31,7 @@ $teamPick = $this->teamPick;
             </div>
         </div>
         <div class="ui hidden divider"></div>
-        <div class="ui segment hidden verify-email-alert">
+        <div class="ui segment <?=($this->extra=="verify-email"?"":"hidden")?> verify-email-alert">
             <h3>Email Verification required to complete registration.</h3>
             <p>
                 A verification email has been sent to your email address. Please click on the link provided in the email to complete your registration. Also please check your spam folder for the email.
@@ -42,7 +42,7 @@ $teamPick = $this->teamPick;
             <a class="ui button"><i class="icon mail outline"></i>Resend Email</a>
         </div>
         <?php if ($teamPick != true): ?>
-            <form class="ui form segment step-1 " method="post">
+            <form class="ui form segment <?=($this->extra=="verify-email"?"hidden":"")?> step-1 " method="post">
 
                 <h4 class="ui dividing header">Personal Information</h4>
 
@@ -120,7 +120,6 @@ $teamPick = $this->teamPick;
                     <div class="header">We noticed some issues</div>
                 </div>-->
                 <div class="ui hidden divider"></div>
-
                 <div class="ui submit button">Proceed to next step <i class="angle right icon"></i></div>
             </form>
         <?php endif;
@@ -182,9 +181,7 @@ $teamPick = $this->teamPick;
                             </div>
                         </div>
                     </div>
-                </div>
-
-
+                </div><br>
                 <!--<div class="ui error message">
                     <div class="header">We noticed some issues</div>
                 </div>-->
