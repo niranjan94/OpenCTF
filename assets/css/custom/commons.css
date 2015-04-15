@@ -1,5 +1,8 @@
 .hidden{
-    display: none;
+    display: none !important;
+}
+.not-hidden{
+    display: block !important;
 }
 .sticky {
     position: absolute;
