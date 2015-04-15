@@ -1,7 +1,8 @@
 var api = {
   arena: {
     register: '/api/',
-    login: ''
+    login: '/api/',
+    forgot_password: '/api/'
   },
   panel: {
 

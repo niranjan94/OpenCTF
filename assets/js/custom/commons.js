@@ -11,9 +11,17 @@ function mergeParams(form,addons){
     }
 }
 function killDefault(e){
-    e.preventDefault();
-    e.stopPropagation();
-    e.stopImmediatePropagation();
+    if(typeof e === "undefined") {
+
+    } else {
+        try{
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+        } catch (err){
+            console.log(err);
+        }
+    }
 }
 $.fn.extend({
     enable: function() {
@@ -38,21 +46,15 @@ $.fn.extend({
         $(this).removeClass("active").removeClass("disabled").removeClass("completed").removeClass("loading");
     }
 });
-var updateFooter = function () {
-    var $body = $('body');
-    var window_height = $(window).height();
-    var body_offset_top = $body.offset().top;
-    var body_outer_height = $body.outerHeight();
-    var body_height = $body.height();
-    var body_bottom = (body_offset_top + body_outer_height) - ((body_outer_height - body_height) / 2);
-    var $footer = $(".sticky-footer");
-    var footer_height = $footer.outerHeight(true);
-
-    if (!$footer.hasClass('sticky') && window_height > body_bottom) {
-        $footer.addClass('sticky');
+function replaceURL(url,title){
+    if(typeof title === "undefined") {
+        title = "";
     }
-    else if ($footer.hasClass('sticky') && window_height < body_bottom + footer_height + 1) {
-        $footer.removeClass('sticky');
+    window.history.replaceState( {} , title, url );
+}
+function changeURL(url,title){
+    if(typeof title === "undefined") {
+        title = "";
     }
-};
-updateFooter();
+    window.history.pushState( {} , title, url );
+}
