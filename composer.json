@@ -12,7 +12,6 @@
         "nesbot/Carbon": "*",
         "yzalis/identicon": "*",
         "phpmailer/phpmailer": "5.2.9",
-        "endroid/qrcode": "~1.5",
         "wixel/gump": "dev-master"
     }
 }
