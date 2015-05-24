@@ -78,6 +78,7 @@
 
 <script type="text/javascript" src="/assets/min/g=arena-js"></script>
 <script type="text/javascript">
+
     $(window).unload(function () { $(window).unbind('unload'); });
     $(window).bind('pageshow', function(event) {
         if (event.originalEvent.persisted) {
@@ -100,9 +101,7 @@
             e.preventDefault();
             $('.ui.vertical.menu').toggle();
         });
-
         $('.ui.dropdown').dropdown();
-
         $(".navitem").click(function(){
             $(".navitem").removeClass("active");
             $(this).addClass("active");

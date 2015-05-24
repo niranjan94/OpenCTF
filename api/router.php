@@ -36,7 +36,7 @@ $requestType = array("POST","GET");
 $klein->respond($requestType, '/', function () {
     sleep(1);
     $result = array(
-        "status" => "ok",
+        "status" => "incorrect",
         "time" => time()
     );
     return json_encode($result);

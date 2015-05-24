@@ -5,6 +5,7 @@ $('.ui.radio.checkbox').checkbox();
 $('.forgot-password').click(function(){
     $('.forgot-password-modal').modal('setting', 'closable', false).modal('show');
 });
+
 var $loginForm = $('.ui.form.login');
 $loginForm
     .form({
@@ -61,7 +62,6 @@ $loginForm
         },
         onFailure: function(e){
             $(".password-error-message").removeClass("message").addClass("hidden").removeClass("not-hidden");
-            killDefault(e);
         }
     })
 ;
